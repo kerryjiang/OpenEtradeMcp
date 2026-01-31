@@ -12,14 +12,15 @@
     <Authors>Kerry Jiang</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/kerryjiang/EtradeMcpNet.git</RepositoryUrl>
+    <PackageReadmeFile>../../releaseNotes/v$(PackageVersion).md</PackageReadmeFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'exists('../../releaseNotes/v$(PackageVersion).md')">
-    <ReadmeFile>../../releaseNotes/v$(PackageVersion).md</ReadmeFile>
+  <PropertyGroup Condition="'exists($(PackageReadmeFile))'">
+    <ReadmeFileAvailable>true</ReadmeFileAvailable>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(IncludeReleaseNotes)' == 'true' and ReadmeFile != ''">
+  <PropertyGroup Condition="'$(IncludeReleaseNotes)' == 'true' and ReadmeFileAvailable == 'true'">
     <PackageReadmeFile>v$(PackageVersion).md</PackageReadmeFile>
   </PropertyGroup>
-  <ItemGroup Condition="'$(IncludeReleaseNotes)' == 'true' and ReadmeFile != ''">
-    <None Include="$(ReadmeFile)" Pack="true" PackagePath="/" />
+  <ItemGroup Condition="'$(IncludeReleaseNotes)' == 'true' and ReadmeFileAvailable == 'true'">
+    <None Include="$(PackageReadmeFile)" Pack="true" PackagePath="/" />
   </ItemGroup>
 </Project>

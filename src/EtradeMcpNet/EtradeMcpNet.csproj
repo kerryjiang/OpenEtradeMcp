@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="etrade-api.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="etrade-api.yaml">
+      <LogicalName>EtradeMcpNet.etrade-api.yaml</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

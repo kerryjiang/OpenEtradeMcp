@@ -80,9 +80,9 @@ Add to your Claude Desktop config file:
     "etrade": {
       "command": "etrade-mcp",
       "env": {
-        "ConsumerKey": "your-consumer-key",
-        "ConsumerSecret": "your-consumer-secret",
-        "UseSandbox": "true"
+        "ETRADE_ConsumerKey": "your-consumer-key",
+        "ETRADE_ConsumerSecret": "your-consumer-secret",
+        "ETRADE_UseSandbox": "true"
       }
     }
   }

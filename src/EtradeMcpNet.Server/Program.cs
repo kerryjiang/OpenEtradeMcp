@@ -1,3 +1,4 @@
+using System.Reflection;
 using EtradeMcpNet;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,7 +50,34 @@ try
     // IMPORTANT: Disable default console logging - it writes to stdout which breaks MCP protocol!
     builder.Logging.ClearProviders();
 
-    var logPath = Path.Combine(AppContext.BaseDirectory, "EtradeMcpServer.log");
+    // Determine log path based on whether running as single file (global tool) or regular application
+    // For single file apps, Assembly.GetEntryAssembly()?.Location returns empty string
+    var assemblyLocation = Assembly.GetEntryAssembly()?.Location;
+    string logPath;
+    
+    if (string.IsNullOrEmpty(assemblyLocation))
+    {
+        // Running as single file application (dotnet global tool)
+        // Use user profile directory for logs
+        var userProfileDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        var logDir = Path.Combine(userProfileDir, ".etrade-mcp", "logs");
+        try
+        {
+            Directory.CreateDirectory(logDir);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Failed to create log directory '{logDir}': {ex.Message}");
+            Console.Error.WriteLine("Falling back to application directory for logging.");
+            logDir = AppContext.BaseDirectory;
+        }
+        logPath = Path.Combine(logDir, "EtradeMcpServer.log");
+    }
+    else
+    {
+        // Running as regular application, use application directory
+        logPath = Path.Combine(AppContext.BaseDirectory, "EtradeMcpServer.log");
+    }
 
     Console.Error.WriteLine("logPath: " + logPath);
 

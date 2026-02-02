@@ -71,14 +71,13 @@ dotnet run
 
 Add to your Claude Desktop config file:
 
-**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`  
-**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json` 
 
 ```json
 {
   "mcpServers": {
     "etrade": {
-      "command": "etrade-mcp",
+      "command": "/Users/{YourUserName}/.dotnet/tools/etrade-mcp",
       "env": {
         "ETRADE_ConsumerKey": "your-consumer-key",
         "ETRADE_ConsumerSecret": "your-consumer-secret",
@@ -88,6 +87,24 @@ Add to your Claude Desktop config file:
   }
 }
 ```
+
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json` 
+
+```json
+{
+  "mcpServers": {
+    "etrade": {
+      "command": "C:\\\\Users\\{YourUserName}\\.dotnet\\tools\\etrade-mcp",
+      "env": {
+        "ETRADE_ConsumerKey": "your-consumer-key",
+        "ETRADE_ConsumerSecret": "your-consumer-secret",
+        "ETRADE_UseSandbox": "true"
+      }
+    }
+  }
+}
+```
+
 
 ### VS Code with GitHub Copilot
 

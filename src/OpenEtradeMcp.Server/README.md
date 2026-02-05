@@ -90,7 +90,7 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
   "mcpServers": {
     "etrade": {
       "command": "dotnet",
-      "args": ["run", "--project", "/path/to/OpenMcpApi.EtradeMcpServer"],
+      "args": ["run", "--project", "/path/to/OpenEtradeMcp.Server"],
       "env": {
         "ETRADE_CONSUMER_KEY": "your-consumer-key",
         "ETRADE_CONSUMER_SECRET": "your-consumer-secret",
@@ -127,7 +127,7 @@ Tools are auto-generated from the E*TRADE OpenAPI specification (`etrade-api.yam
 ## Troubleshooting
 
 ### "OpenAPI spec file not found"
-Ensure the `etrade-api.yaml` file is in the output directory. Check that the OpenMcpApi.Etrade project copies it to the output.
+Ensure the `etrade-api.yaml` file is in the output directory. Check that the OpenEtradeMcp project copies it to the output.
 
 ### "E*TRADE API credentials not provided"
 Set the `ETRADE_CONSUMER_KEY` and `ETRADE_CONSUMER_SECRET` environment variables.

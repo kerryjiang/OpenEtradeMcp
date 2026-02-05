@@ -29,7 +29,7 @@ jobs:
                 echo "DOTNET_hostBuilder:reloadConfigOnChange=false" >> $GITHUB_ENV
             - name: Clean
               run: |
-                dotnet clean ./EtradeMcpNet.sln --configuration Release
+                dotnet clean ./OpenEtradeMcp.sln --configuration Release
                 dotnet nuget locals all --clear
             - name: Build
               run: dotnet build -c Release

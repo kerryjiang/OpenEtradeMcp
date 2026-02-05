@@ -1,4 +1,4 @@
-namespace EtradeMcpNet;
+namespace OpenEtradeMcp;
 
 /// <summary>
 /// Configuration settings for the E*TRADE API client
@@ -40,8 +40,6 @@ public class ETradeConfig
     /// </summary>
     public string SignatureMethod { get; set; } = "HMAC-SHA1";
 
-    /// <summary>
-    /// Gets the production base URL
     /// <summary>
     /// Gets the production base URL
     /// </summary>

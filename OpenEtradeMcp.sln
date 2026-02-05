@@ -5,9 +5,9 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtradeMcpNet", "src\EtradeMcpNet\EtradeMcpNet.csproj", "{4DEB3957-B7CB-752C-FFD3-4DCAEAA6FE57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenEtradeMcp", "src\OpenEtradeMcp\OpenEtradeMcp.csproj", "{4DEB3957-B7CB-752C-FFD3-4DCAEAA6FE57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtradeMcpNet.Server", "src\EtradeMcpNet.Server\EtradeMcpNet.Server.csproj", "{4DFA73F2-4757-4BE4-B34E-048FF911571B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenEtradeMcp.Server", "src\OpenEtradeMcp.Server\OpenEtradeMcp.Server.csproj", "{4DFA73F2-4757-4BE4-B34E-048FF911571B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,7 +8,7 @@
     <!-- Global Tool Configuration -->
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>etrade-mcp</ToolCommandName>
-    <PackageId>EtradeMcpNet.Server</PackageId>
+    <PackageId>OpenEtradeMcp.Server</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\EtradeMcpNet\EtradeMcpNet.csproj" />
+    <ProjectReference Include="..\..\src\OpenEtradeMcp\OpenEtradeMcp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Text.Json;
 using ModelContextProtocol.Server;
 
-namespace EtradeMcpNet;
+namespace OpenEtradeMcp;
 
 /// <summary>
 /// Holds the OAuth session state during the authentication flow.

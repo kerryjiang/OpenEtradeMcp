@@ -1,4 +1,4 @@
-namespace EtradeMcpNet;
+namespace OpenEtradeMcp;
 
 /// <summary>
 /// Configuration settings for the E*TRADE API client

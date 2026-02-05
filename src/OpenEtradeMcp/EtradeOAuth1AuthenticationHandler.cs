@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using OpenApiMcpNet;
 
-namespace EtradeMcpNet;
+namespace OpenEtradeMcp;
 
 /// <summary>
 /// E*TRADE OAuth 1.0a authentication handler.

@@ -1,4 +1,4 @@
-# EtradeMcpNet
+# OpenEtradeMcp
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0-purple.svg)](https://dotnet.microsoft.com/)
@@ -23,14 +23,14 @@ An MCP (Model Context Protocol) server that exposes E*TRADE API operations as to
 ### As a .NET Global Tool
 
 ```bash
-dotnet tool install --global EtradeMcpNet.Server
+dotnet tool install --global OpenEtradeMcp.Server
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/kerryjiang/EtradeMcpNet.git
-cd EtradeMcpNet
+git clone https://github.com/kerryjiang/OpenEtradeMcp.git
+cd OpenEtradeMcp
 dotnet build
 ```
 
@@ -61,7 +61,7 @@ etrade-mcp
 ### From Source
 
 ```bash
-cd src/EtradeMcpNet.Server
+cd src/OpenEtradeMcp.Server
 dotnet run
 ```
 
@@ -165,14 +165,14 @@ Tools are auto-generated from the E*TRADE OpenAPI specification and include:
 ## Project Structure
 
 ```
-EtradeMcpNet/
+OpenEtradeMcp/
 ├── src/
-│   ├── EtradeMcpNet/              # Core library with E*TRADE API definitions
+│   ├── OpenEtradeMcp/              # Core library with E*TRADE API definitions
 │   │   └── etrade-api.yaml        # E*TRADE OpenAPI specification
-│   └── EtradeMcpNet.Server/       # MCP server executable
+│   └── OpenEtradeMcp.Server/       # MCP server executable
 ├── Directory.Build.props          # Shared build properties
 ├── Directory.Packages.props       # Centralized package management
-└── EtradeMcpNet.sln              # Solution file
+└── OpenEtradeMcp.sln              # Solution file
 ```
 
 ## Security Notes

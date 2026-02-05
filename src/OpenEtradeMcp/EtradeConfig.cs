@@ -42,8 +42,6 @@ public class ETradeConfig
 
     /// <summary>
     /// Gets the production base URL
-    /// <summary>
-    /// Gets the production base URL
     /// </summary>
     public static string ProductionBaseUrl => "https://api.etrade.com/v1";
 

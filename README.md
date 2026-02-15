@@ -1,9 +1,17 @@
 # OpenEtradeMcp
 
+[![build](https://github.com/kerryjiang/OpenEtradeMcp/actions/workflows/build.yml/badge.svg)](https://github.com/kerryjiang/OpenEtradeMcp/actions/workflows/build.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0-purple.svg)](https://dotnet.microsoft.com/)
 
 An MCP (Model Context Protocol) server that exposes E*TRADE API operations as tools for AI agents. This allows AI assistants like Claude and GitHub Copilot to interact with E*TRADE's trading platform.
+
+### NuGet Packages
+
+| Package | Version | Downloads |
+|---------|---------|-----------|
+| OpenEtradeMcp | [![NuGet](https://img.shields.io/nuget/v/OpenEtradeMcp.svg)](https://www.nuget.org/packages/OpenEtradeMcp) | [![NuGet Downloads](https://img.shields.io/nuget/dt/OpenEtradeMcp.svg)](https://www.nuget.org/packages/OpenEtradeMcp) |
+| OpenEtradeMcp.Server | [![NuGet](https://img.shields.io/nuget/v/OpenEtradeMcp.Server.svg)](https://www.nuget.org/packages/OpenEtradeMcp.Server) | [![NuGet Downloads](https://img.shields.io/nuget/dt/OpenEtradeMcp.Server.svg)](https://www.nuget.org/packages/OpenEtradeMcp.Server) |
 
 ## Features
 

@@ -17,6 +17,7 @@ An MCP (Model Context Protocol) server that exposes E*TRADE API operations as to
 
 - **OAuth 1.0a Authentication**: Interactive OAuth flow designed to work seamlessly with AI agents
 - **E*TRADE API Tools**: Auto-generated tools from E*TRADE's OpenAPI specification
+- **Order Confirmation Safety Gate**: Optional MCP elicitation-based confirmation for order placement, cancellation, and modification — prevents unintended trades by requiring explicit user approval via a native client dialog that the LLM cannot bypass
 - **Sandbox Support**: Test safely with E*TRADE's sandbox environment
 - **Global Tool**: Install as a .NET global tool for easy access
 
@@ -183,11 +184,93 @@ OpenEtradeMcp/
 └── OpenEtradeMcp.sln              # Solution file
 ```
 
+## Order Confirmation Safety Gate
+
+When AI agents interact with brokerage accounts, a critical safety concern is preventing unintended order execution. The server includes an optional order confirmation feature that gates dangerous operations behind explicit user confirmation.
+
+### Enabling Order Confirmation
+
+```bash
+export ETRADE_EnableOrderConfirmation="true"
+```
+
+Or in your MCP client configuration:
+
+```json
+{
+  "mcpServers": {
+    "etrade": {
+      "command": "etrade-mcp",
+      "env": {
+        "ETRADE_ConsumerKey": "your-key",
+        "ETRADE_ConsumerSecret": "your-secret",
+        "ETRADE_EnableOrderConfirmation": "true"
+      }
+    }
+  }
+}
+```
+
+### How It Works
+
+When enabled, the following tools require explicit user confirmation before execution:
+- `placeOrder` - New order placement
+- `cancelOrder` - Order cancellation
+- `placeChangeOrder` - Order modification
+
+**With MCP elicitation support** (Claude Code 2.1.76+, and other clients that support `elicitation/create`):
+
+The server sends a native confirmation dialog directly to the client. The user sees a form with full order details (symbol, action, quantity, price, account) and must check a confirmation box before the order executes. This is a **mechanical gate** — the LLM cannot bypass, intercept, or auto-confirm it.
+
+For `cancelOrder`, the server automatically fetches the order details from E*TRADE so the user can see exactly what they are canceling (symbol, action, quantity, status).
+
+Account identifiers are resolved to human-friendly display format (masked account number + description).
+
+**Without MCP elicitation support** (fallback):
+
+For clients that do not support MCP elicitation, the server uses a token-based fallback. The tool returns order details and a confirmation token. The AI agent is instructed to present the details to the user and, if confirmed, re-call the tool with the token. Note: this fallback relies on the AI agent to present the confirmation, which is a weaker guarantee than native elicitation.
+
+### Configuration Options
+
+| Environment Variable | Default | Description |
+|---------------------|---------|-------------|
+| `ETRADE_EnableOrderConfirmation` | `false` | Enable order confirmation gate. When `false`, all tools execute without confirmation (existing behavior). |
+| `ETRADE_GuardedTools` | `placeOrder,cancelOrder,placeChangeOrder` | Comma-separated list of tool names that require confirmation. |
+| `ETRADE_ConfirmationTimeoutSeconds` | `300` | How long (seconds) a fallback confirmation token remains valid. |
+
+### Example Dialog
+
+```
+══════════════════════════════════════════
+  ORDER PLACEMENT — CONFIRMATION REQUIRED
+══════════════════════════════════════════
+
+  account: ****1234 - Individual - (My Trading Acct) - [MARGIN]
+  orderType: EQ
+  order:
+    priceType: MARKET
+    orderTerm: GOOD_FOR_DAY
+    instrument:
+      orderAction: SELL_SHORT
+      quantity: 50
+      symbol: CPT
+
+══════════════════════════════════════════
+  Review details above. Check confirm box.
+══════════════════════════════════════════
+
+  > confirm: [ ]
+      I have reviewed the order details and approve execution
+
+  Accept    Decline
+```
+
 ## Security Notes
 
 - **Never commit credentials** - Use environment variables for your consumer key/secret
 - **Memory-only tokens** - Access tokens are stored in memory and not persisted to disk
 - **Use sandbox first** - Test with sandbox environment before using production credentials
+- **Enable order confirmation** - Set `ETRADE_EnableOrderConfirmation=true` to prevent unintended order execution by AI agents. This is **strongly recommended** for production use.
 
 ## Troubleshooting
 

@@ -54,4 +54,28 @@ public class ETradeConfig
     /// The OAuth authorization endpoint URL
     /// </summary>
     public string AuthorizationBaseUrl => "https://api.etrade.com";
+
+    /// <summary>
+    /// When true, dangerous operations (order placement, cancellation, modification)
+    /// require explicit user confirmation via MCP elicitation before execution.
+    /// Default: false (existing behavior unchanged).
+    /// Set via ETRADE_EnableOrderConfirmation=true
+    /// </summary>
+    public bool EnableOrderConfirmation { get; set; } = false;
+
+    /// <summary>
+    /// Comma-separated list of tool names (operationIds) that require user confirmation.
+    /// Only applies when EnableOrderConfirmation is true.
+    /// Default: "placeOrder,cancelOrder,placeChangeOrder"
+    /// Set via ETRADE_GuardedTools=placeOrder,cancelOrder,placeChangeOrder
+    /// </summary>
+    public string GuardedTools { get; set; } = "placeOrder,cancelOrder,placeChangeOrder";
+
+    /// <summary>
+    /// How long (in seconds) a confirmation token remains valid when using the
+    /// fallback token-based confirmation for clients that don't support elicitation.
+    /// Default: 300 (5 minutes).
+    /// Set via ETRADE_ConfirmationTimeoutSeconds=300
+    /// </summary>
+    public int ConfirmationTimeoutSeconds { get; set; } = 300;
 }

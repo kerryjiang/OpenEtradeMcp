@@ -72,6 +72,9 @@ try
         .WithTools(oauthTools)
         // Register API tools from OpenAPI spec
         .WithToolsFromOpenApi(openApiSpec, etradeConfig.BaseUrl)
+        // Add confirmation gate for dangerous operations (placeOrder, cancelOrder, placeChangeOrder)
+        // Enabled via ETRADE_EnableOrderConfirmation=true (default: disabled, no behavior change)
+        .WithOrderConfirmation(etradeConfig)
         .Services
         .AddSingleton(etradeConfig)
         .AddSingleton(httpClient)

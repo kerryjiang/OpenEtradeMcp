@@ -28,7 +28,7 @@ public class EtradeOAuth1AuthenticationHandler : OAuth1AuthenticationHandler
     public EtradeOAuth1AuthenticationHandler(
         HttpClient httpClient,
         ETradeConfig etradeConfig)
-        : base(httpClient, $"{etradeConfig.AuthorizationBaseUrl}/oauth/request_token", $"{etradeConfig.AuthorizationBaseUrl}/oauth/access_token", etradeConfig.ConsumerKey, etradeConfig.ConsumerSecret, etradeConfig.SignatureMethod)
+        : base(httpClient, $"{(etradeConfig ?? throw new ArgumentNullException(nameof(etradeConfig))).AuthorizationBaseUrl}/oauth/request_token", $"{etradeConfig.AuthorizationBaseUrl}/oauth/access_token", etradeConfig.ConsumerKey, etradeConfig.ConsumerSecret, etradeConfig.SignatureMethod)
     {
         _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         _etradeConfig = etradeConfig ?? throw new ArgumentNullException(nameof(etradeConfig));

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
   <ItemGroup>
-    <PackageVersion Include="OpenApiMcpNet" Version="1.0.1" />
+    <PackageVersion Include="OpenApiMcpNet" Version="1.0.2" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
     <PackageVersion Include="ModelContextProtocol" Version="1.2.0" />

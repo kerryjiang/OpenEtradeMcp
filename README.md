@@ -2,7 +2,6 @@
 
 [![build](https://github.com/kerryjiang/OpenEtradeMcp/actions/workflows/build.yml/badge.svg)](https://github.com/kerryjiang/OpenEtradeMcp/actions/workflows/build.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0-purple.svg)](https://dotnet.microsoft.com/)
 
 An MCP (Model Context Protocol) server that exposes E*TRADE API operations as tools for AI agents. This allows AI assistants like Claude and GitHub Copilot to interact with E*TRADE's trading platform.
 
@@ -23,7 +22,7 @@ An MCP (Model Context Protocol) server that exposes E*TRADE API operations as to
 
 ## Prerequisites
 
-- [.NET 8.0 or 9.0 SDK](https://dotnet.microsoft.com/download)
+- [.NET 8.0/9.0/10.0 SDK](https://dotnet.microsoft.com/download)
 - E*TRADE Developer Account with API access
 - Consumer Key and Consumer Secret from [E*TRADE Developer Portal](https://developer.etrade.com/)
 

@@ -783,10 +783,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PreviewOrderRequest'
+              $ref: '#/components/schemas/PreviewOrderRequestEnvelope'
           application/xml:
             schema:
-              $ref: '#/components/schemas/PreviewOrderRequest'
+              $ref: '#/components/schemas/PreviewOrderRequestEnvelope'
       responses:
         '200':
           description: Successful preview
@@ -823,10 +823,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PlaceOrderRequest'
+              $ref: '#/components/schemas/PlaceOrderRequestEnvelope'
           application/xml:
             schema:
-              $ref: '#/components/schemas/PlaceOrderRequest'
+              $ref: '#/components/schemas/PlaceOrderRequestEnvelope'
       responses:
         '200':
           description: Order placed successfully
@@ -861,10 +861,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelOrderRequest'
+              $ref: '#/components/schemas/CancelOrderRequestEnvelope'
           application/xml:
             schema:
-              $ref: '#/components/schemas/CancelOrderRequest'
+              $ref: '#/components/schemas/CancelOrderRequestEnvelope'
       responses:
         '200':
           description: Cancel request submitted
@@ -906,10 +906,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PreviewOrderRequest'
+              $ref: '#/components/schemas/PreviewOrderRequestEnvelope'
           application/xml:
             schema:
-              $ref: '#/components/schemas/PreviewOrderRequest'
+              $ref: '#/components/schemas/PreviewOrderRequestEnvelope'
       responses:
         '200':
           description: Preview successful
@@ -951,10 +951,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PlaceOrderRequest'
+              $ref: '#/components/schemas/PlaceOrderRequestEnvelope'
           application/xml:
             schema:
-              $ref: '#/components/schemas/PlaceOrderRequest'
+              $ref: '#/components/schemas/PlaceOrderRequestEnvelope'
       responses:
         '200':
           description: Order change placed
@@ -3181,11 +3181,20 @@ components:
           items:
             $ref: '#/components/schemas/OrderInstrument'
 
+    PreviewOrderRequestEnvelope:
+      type: object
+      required:
+        - PreviewOrderRequest
+      properties:
+        PreviewOrderRequest:
+          $ref: '#/components/schemas/PreviewOrderRequest'
+
     PreviewOrderRequest:
       type: object
       required:
         - orderType
-        - order
+        - Order
+        - clientOrderId
       properties:
         orderType:
           type: string
@@ -3204,14 +3213,24 @@ components:
           type: string
           description: Unique ID (up to 20 alphanumeric chars) to prevent duplicates
           maxLength: 20
-        order:
+        Order:
           type: array
           items:
             $ref: '#/components/schemas/OrderDetailRequest'
 
     OrderDetailRequest:
       type: object
+      required:
+        - accountId
+        - allOrNone
+        - priceType
+        - orderTerm
+        - Instrument
+        - marketSession        
       properties:
+        accountId: 
+          type: string
+          description: The numeric account ID
         allOrNone:
           type: boolean
           default: false
@@ -3244,15 +3263,20 @@ components:
           type: number
         stopLimitPrice:
           type: number
-        instrument:
+        Instrument:
           type: array
           items:
             $ref: '#/components/schemas/InstrumentRequest'
 
     InstrumentRequest:
       type: object
+      required:
+        - Product
+        - orderAction
+        - quantityType
+        - quantity
       properties:
-        product:
+        Product:
           $ref: '#/components/schemas/ProductRequest'
         orderAction:
           type: string
@@ -3362,12 +3386,20 @@ components:
             - CASH
             - MARGIN
 
+    PlaceOrderRequestEnvelope:
+      type: object
+      required:
+        - PlaceOrderRequest
+      properties:
+        PlaceOrderRequest:
+          $ref: '#/components/schemas/PlaceOrderRequest'
+
     PlaceOrderRequest:
       type: object
       required:
         - orderType
-        - order
-        - previewIds
+        - Order
+        - PreviewIds
       properties:
         orderType:
           type: string
@@ -3385,11 +3417,11 @@ components:
         clientOrderId:
           type: string
           maxLength: 20
-        order:
+        Order:
           type: array
           items:
             $ref: '#/components/schemas/OrderDetailRequest'
-        previewIds:
+        PreviewIds:
           type: array
           items:
             $ref: '#/components/schemas/PreviewId'
@@ -3446,6 +3478,14 @@ components:
           enum:
             - CASH
             - MARGIN
+
+    CancelOrderRequestEnvelope:
+      type: object
+      required:
+        - CancelOrderRequest
+      properties:
+        CancelOrderRequest:
+          $ref: '#/components/schemas/CancelOrderRequest'
 
     CancelOrderRequest:
       type: object

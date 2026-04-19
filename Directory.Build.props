@@ -12,7 +12,7 @@
     <Authors>Kerry Jiang</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/kerryjiang/OpenEtradeMcp.git</RepositoryUrl>
-    <PackageReadmeFilePath>../../releaseNotes/v$(PackageVersion).md</PackageReadmeFilePath>
+    <PackageReadmeFilePath>$(MSBuildThisFileDirectory)releaseNotes/v$(PackageVersion).md</PackageReadmeFilePath>
   </PropertyGroup>
   <PropertyGroup Condition="Exists('$(PackageReadmeFilePath)')">
     <ReadmeFileAvailable>true</ReadmeFileAvailable>
@@ -21,6 +21,6 @@
     <PackageReadmeFile>v$(PackageVersion).md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup Condition="'$(IncludeReleaseNotes)' == 'true' and $(ReadmeFileAvailable) == 'true'">
-    <None Include="$(PackageReadmeFile)" Pack="true" PackagePath="/" />
+    <None Include="$(PackageReadmeFilePath)" Pack="true" PackagePath="/" />
   </ItemGroup>
 </Project>

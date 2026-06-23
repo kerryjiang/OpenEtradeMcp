@@ -256,6 +256,44 @@ paths:
         '500':
           description: Internal server error
 
+  /accounts/{accountIdKey}/portfolio/{positionId}:
+    get:
+      tags:
+        - Portfolio
+      summary: View Position Lots
+      description: Returns the individual tax lots for a single portfolio position. Use the positionId from the View Portfolio response (also referenced by each position's lotsDetails URL).
+      operationId: getPositionLots
+      parameters:
+        - name: accountIdKey
+          in: path
+          required: true
+          description: The unique account key. Retrievable by calling the List Accounts API.
+          schema:
+            type: string
+        - name: positionId
+          in: path
+          required: true
+          description: The position ID whose tax lots should be returned. Retrievable from the positionId field (or lotsDetails URL) of a View Portfolio position.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortfolioResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PortfolioResponse'
+        '204':
+          description: No lot information found
+        '400':
+          description: Bad request - Invalid parameters
+        '500':
+          description: Internal server error
+
   /accounts/{accountIdKey}/transactions:
     get:
       tags:

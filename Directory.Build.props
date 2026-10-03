@@ -10,6 +10,7 @@
   </ItemGroup>
   <PropertyGroup>
     <Authors>Kerry Jiang</Authors>
+    <Description>OpenEtradeMcp exposes E*TRADE account, portfolio, and order operations through the Model Context Protocol (MCP) using the official OpenAPI schema.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/kerryjiang/OpenEtradeMcp.git</RepositoryUrl>
     <PackageReadmeFilePath>$(MSBuildThisFileDirectory)releaseNotes/v$(PackageVersion).md</PackageReadmeFilePath>
